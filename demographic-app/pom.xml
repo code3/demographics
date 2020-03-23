@@ -12,6 +12,8 @@
 	<groupId>com.lizardkinghotel.demographic</groupId>
 	<artifactId>demographic-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	
 	<name>demographic-app</name>
 	<description>Demographics for Marketing</description>
 

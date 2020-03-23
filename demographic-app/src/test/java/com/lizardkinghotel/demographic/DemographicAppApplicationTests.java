@@ -47,7 +47,7 @@ class DemographicAppApplicationTests {
 	@Test
 	public void testFindDemographicsById() {
 		
-		DemographicEntity demoEntity = demoRepo.findById(103l).get();		
+		DemographicEntity demoEntity = demoRepo.findById(133l).get();		
 		System.out.println(demoEntity);		
 	}
 	
@@ -55,7 +55,7 @@ class DemographicAppApplicationTests {
 	@Test
 	public void testUpdateDemo() {
 		
-		DemographicEntity demoEntity = demoRepo.findById(103l).get();
+		DemographicEntity demoEntity = demoRepo.findById(133l).get();
 		demoEntity.setGuestAmount(3);
 		
 		demoRepo.save(demoEntity);
@@ -65,7 +65,7 @@ class DemographicAppApplicationTests {
 	@Test
 	public void testDeleteDemo() {
 		
-		DemographicEntity demoEntity = demoRepo.findById(103l).get();
+		DemographicEntity demoEntity = demoRepo.findById(133l).get();
 		//demoEntity.setGuestAmount(3);
 		
 		demoRepo.delete(demoEntity);

@@ -1,7 +1,5 @@
 package com.lizardkinghotel.demographic;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 //import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,8 @@ class DemographicAppApplicationTests {
 
 	@Autowired
 	private DemographicRepository demoRepo;//DemographicRepository is created at runtime
+	
+	private Long id;
 
 	@Test
 	public void testCreateDemographic() {
@@ -27,6 +27,7 @@ class DemographicAppApplicationTests {
 		//the Demographic object will be used to create table and fields
 		DemographicEntity demoEntity = new DemographicEntity();
 		
+		//demoEntity.setId(1L);
 		demoEntity.setAge("39–47");
 		demoEntity.setChildren(2);
 		demoEntity.setCity("san jose");;
@@ -39,7 +40,11 @@ class DemographicAppApplicationTests {
 		demoEntity.setHearAbout("google search");
 
 		
-		demoRepo.save(demoEntity);						
+		DemographicEntity myObj = demoRepo.save(demoEntity);	
+		demoRepo.flush();
+//		this.id = myObj.getId();
+		this.setId(myObj.getId());
+		System.out.print("\n\n this is ID: " + this.getId() + "\n\n");
 		
 	}
 	
@@ -47,7 +52,9 @@ class DemographicAppApplicationTests {
 	@Test
 	public void testFindDemographicsById() {
 		
-		DemographicEntity demoEntity = demoRepo.findById(139l).get();		
+		System.out.print("\n\n this is ID in testFindDemographicsById: " + this.getId() + "\n\n");
+		
+		DemographicEntity demoEntity = demoRepo.findById(this.getId()).get();		
 		System.out.println(demoEntity);		
 	}
 	
@@ -55,7 +62,7 @@ class DemographicAppApplicationTests {
 	@Test
 	public void testUpdateDemo() {
 		
-		DemographicEntity demoEntity = demoRepo.findById(139l).get();
+		DemographicEntity demoEntity = demoRepo.findById(this.getId()).get();
 		demoEntity.setGuestAmount(3);
 		
 		demoRepo.save(demoEntity);
@@ -65,12 +72,20 @@ class DemographicAppApplicationTests {
 	@Test
 	public void testDeleteDemo() {
 		
-		DemographicEntity demoEntity = demoRepo.findById(139l).get();
+		DemographicEntity demoEntity = demoRepo.findById(this.getId()).get();
 		//demoEntity.setGuestAmount(3);
 		
 		demoRepo.delete(demoEntity);
 		
 	}	
 	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	public Long getId() {
+		return this.id;
+	}
 	
 }
